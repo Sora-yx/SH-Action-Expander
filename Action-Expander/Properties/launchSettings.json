@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Jeux\\SONICHEROES\\Tsonic_win.exe",
+      "workingDirectory": "D:\\Jeux\\SONICHEROES"
+    }
+  }
+}

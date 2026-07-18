@@ -1,6 +1,7 @@
 ﻿using Action_Expander.Template;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
+using System.Runtime.InteropServices;
 
 #if DEBUG
 using System.Diagnostics;
@@ -13,6 +14,9 @@ namespace Action_Expander
     /// </summary>
     public class Mod : ModBase // <= Do not Remove.
     {
+        [DllImport("SH-Action-Expander.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void InitializeOutput();
+
         /// <summary>
         /// Provides access to the mod loader API.
         /// </summary>
@@ -47,10 +51,7 @@ namespace Action_Expander
             _owner = context.Owner;
             _modConfig = context.ModConfig;
 
-#if DEBUG
-            // Attaches debugger in debug mode; ignored in release.
-            Debugger.Launch();
-#endif
+            InitializeOutput();
 
             // For more information about this template, please see
             // https://reloaded-project.github.io/Reloaded-II/ModTemplate/
