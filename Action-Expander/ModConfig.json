@@ -1,0 +1,23 @@
+{
+  "ModId": "SH.Action.Expander",
+  "ModName": "SH: Action Expander",
+  "ModAuthor": "Sora",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Dependency mod that allows others mods to easily add new action or animations to Sonic Heroes characters.",
+  "ModDll": "Action_Expander.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/Action_Expander.dll",
+  "ModR2RManagedDll64": "x64/Action_Expander.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "Action_Expander.ReleaseMetadata.json",
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [ "reloaded.sharedlib.hooks" ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "tsonic_win.exe"
+  ],
+  "ProjectUrl": ""
+}
