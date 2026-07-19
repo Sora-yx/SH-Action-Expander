@@ -10,11 +10,31 @@
   "ModR2RManagedDll64": "",
   "ModNativeDll32": "SH-Action-Expander.dll",
   "ModNativeDll64": "",
-  "IsLibrary": false,
+  "Tags": [],
+  "CanUnload": null,
+  "HasExports": null,
+  "IsLibrary": true,
   "ReleaseMetadataFileName": "Action_Expander.ReleaseMetadata.json",
-  "PluginData": {},
+  "IgnoreRegexes": [
+    ".*\\.json"
+  ],
+  "IncludeRegexes": [
+    "\\.deps\\.json",
+    "\\.runtimeconfig\\.json",
+    "ModConfig\\.json"
+  ],
+  "PluginData": {
+    "GitHubRelease": {
+      "UserName": "Sora-yx",
+      "RepositoryName": "SH-Action-Expander",
+      "UseReleaseTag": true,
+      "AssetFileName": "SH-Action-Expander.7z"
+    }
+  },
   "IsUniversalMod": false,
-  "ModDependencies": [ "reloaded.sharedlib.hooks" ],
+  "ModDependencies": [
+    "reloaded.sharedlib.hooks"
+  ],
   "OptionalDependencies": [],
   "SupportedAppId": [
     "tsonic_win.exe"
