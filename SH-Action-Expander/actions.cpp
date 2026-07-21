@@ -92,9 +92,3 @@ int32_t RegisterNewLastTeamPlayMode()
 {
 	return CheckAndRegisterNewAction(&newPrevModesTeamPlay, lastPrevTeamPlayMode);
 }
-
-void InitActionsExpander()
-{
-
-}
-

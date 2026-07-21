@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <fcntl.h>
 #include <io.h>
+#include "anims.h"
 
 extern "C"
 {
@@ -16,6 +17,7 @@ extern "C"
 	__declspec(dllexport) void Init()
 	{
 		PrintMessage("Action Expander says Hello from C++\n");
+		InitNewAnims();
 	}
 
 }

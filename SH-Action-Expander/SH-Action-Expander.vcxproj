@@ -88,11 +88,13 @@
   <ItemGroup>
     <ClInclude Include="actions.h" />
     <ClInclude Include="acts_api.h" />
+    <ClInclude Include="anims.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="actions.cpp" />
+    <ClCompile Include="anims.cpp" />
     <ClCompile Include="api.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="mod.cpp" />
