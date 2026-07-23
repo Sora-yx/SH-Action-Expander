@@ -13,7 +13,7 @@
   "Tags": [],
   "CanUnload": null,
   "HasExports": null,
-  "IsLibrary": true,
+  "IsLibrary": false,
   "ReleaseMetadataFileName": "Action_Expander.ReleaseMetadata.json",
   "IgnoreRegexes": [
     ".*\\.json"
