@@ -42,3 +42,8 @@ int ActExp_GetNextAvailableAnimID(const Character chara)
 {
 	return GetNextAvailableAnimID(chara);
 }
+
+int ActExp_GetNextAvailableAnimFileID()
+{
+	return GetNextAvailableAnimFileID();
+}

@@ -166,7 +166,7 @@ void UpdateAnimList()
 
 void UpdateAnimeFileList()
 {
-	for (int i = 0; i < 775; i++)
+	for (uint16_t i = 0; i < AnimFilesCount; i++)
 	{
 		newPlayerMotions[i] = player_motions[i];	
 	}
@@ -232,9 +232,8 @@ int32_t CheckAndRegisterNewAnim(Character chara, PL_MOTION* mtnInfo, RtAnimAnima
 			memset(&animFile, 0, sizeof(CustomMML_MOTIONTABLE));
 			animFile.id |= 1 << chara;
 			animFile.ptr = animData;
-			auto* pAram = queueNewRegisteredAnimFile.size() > 0 ? &queueNewRegisteredAnimFile.back() : &player_motions[775];
+			auto* pAram = queueNewRegisteredAnimFile.size() > 0 ? &queueNewRegisteredAnimFile.back() : &player_motions[774];
 			pAram->pARAM = (void*)lastAnimFileID;
-
 			queueNewRegisteredAnimFile.push_back(animFile);
 			lastAnimFileID++;
 			return 0;
@@ -415,6 +414,11 @@ int GetNextAvailableAnimID(const Character chara)
 	return -1;
 }
 
+int GetNextAvailableAnimFileID()
+{
+	return lastAnimFileID;
+}
+
 void InitNewAnims()
 {
 
@@ -445,7 +449,7 @@ void InitNewAnims()
 		vectorNewAnimsList.push_back(vector_motions[i]);
 	}
 
-	for (int i = 0; i < 775; i++)
+	for (uint16_t i = 0; i < AnimFilesCount; i++)
 	{
 		CustomMML_MOTIONTABLE mtnTable;
 		memset(&mtnTable, 0, sizeof(CustomMML_MOTIONTABLE));

@@ -95,6 +95,13 @@ extern "C"
 	*/
 	API int ActExp_GetNextAvailableAnimID(const Character chara);
 
+	/*@brief Get the next reserved animation file index (player_motions), useful if you have to build an animation list and need to know in advance
+	the anim file index.
+	*
+	* Return the next anim file index if success, otherwise -1.
+	*/
+	API int ActExp_GetNextAvailableAnimFileID();
+
 
 #ifdef __cplusplus
 }
