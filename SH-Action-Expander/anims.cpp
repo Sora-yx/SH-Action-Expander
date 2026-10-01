@@ -4,17 +4,9 @@
 
 FastStdcallHook<void*, TObjPlayer*> LoadCharacterAnimations_h(0x580060);
 FastUsercallHook<int8_t, TObjTeam*> TObjTeamInitTeamMembeonmode_h(0x5AAA80);
+FastUsercallHook<void, TObjPlayer*> ReleaseCharacterAnimations_h(0x580220);
 
-struct CustomMML_MOTIONTABLE
-{
-	signed int id;
-	struct RtAnimAnimation* ptr;
-	signed int thismotion;
-	void* pARAM;
-};
-
-
-DataArray(CustomMML_MOTIONTABLE, player_motions, 0xA47FBC, 777);
+DataArray(MML_MOTIONTABLE, player_motions, 0xA47FBC, 777);
 
 constexpr uint16_t AnimFilesCount = 775u;
 constexpr uint8_t speedAnimCount = 105u;
@@ -53,7 +45,7 @@ std::vector<PL_MOTION> omegaNewAnimsList;
 std::vector<PL_MOTION> bigNewAnimsList;
 std::vector<PL_MOTION> vectorNewAnimsList;
 
-std::vector<CustomMML_MOTIONTABLE> newPlayerMotions;
+std::vector<MML_MOTIONTABLE> newPlayerMotions;
 
 // we use a queue system so if this mod is loaded before user register anim, we will copy the new registered anim in the queue later
 // this also allow us to make sure the original anims are copy in the vector before the new ones.
@@ -65,7 +57,7 @@ struct QueueNewAnimInfo
 };
 
 std::vector<QueueNewAnimInfo> queueNewRegisteredAnimsList;
-std::vector<CustomMML_MOTIONTABLE> queueNewRegisteredAnimFile;
+std::vector<MML_MOTIONTABLE> queueNewRegisteredAnimFile;
 
 
 void UpdateAnimList()
@@ -228,8 +220,8 @@ int32_t CheckAndRegisterNewAnim(Character chara, PL_MOTION* mtnInfo, RtAnimAnima
 
 		if (queueNewRegisteredAnimFile.size() < UINT32_MAX)
 		{
-			CustomMML_MOTIONTABLE animFile;
-			memset(&animFile, 0, sizeof(CustomMML_MOTIONTABLE));
+			MML_MOTIONTABLE animFile;
+			memset(&animFile, 0, sizeof(MML_MOTIONTABLE));
 			animFile.id |= 1 << chara;
 			animFile.ptr = animData;
 			auto* pAram = queueNewRegisteredAnimFile.size() > 0 ? &queueNewRegisteredAnimFile.back() : &player_motions[774];
@@ -343,6 +335,13 @@ signed __int8 TObjTeamInitTeamMember_r(TObjTeam* this_)
 	return TObjTeamInitTeamMembeonmode_h.Original(this_);
 }
 
+
+void TObjOldPlayerReleaseCharacterAnimations_r(TObjPlayer* TObjPlayer)
+{
+	ReleaseCharacterAnimations_h.Original(TObjPlayer);
+	UpdateAnimeFileList();
+}
+
 PL_MOTION* GetNewCharacterAnimationList(const Character chara)
 {
 	switch (chara)
@@ -378,7 +377,7 @@ PL_MOTION* GetNewCharacterAnimationList(const Character chara)
 
 MML_MOTIONTABLE* GetNewPlayerMotionList()
 {
-	return (MML_MOTIONTABLE* )newPlayerMotions.data();
+	return newPlayerMotions.data();
 }
 
 int GetNextAvailableAnimID(const Character chara)
@@ -451,8 +450,8 @@ void InitNewAnims()
 
 	for (uint16_t i = 0; i < AnimFilesCount; i++)
 	{
-		CustomMML_MOTIONTABLE mtnTable;
-		memset(&mtnTable, 0, sizeof(CustomMML_MOTIONTABLE));
+		MML_MOTIONTABLE mtnTable;
+		memset(&mtnTable, 0, sizeof(MML_MOTIONTABLE));
 		newPlayerMotions.push_back(mtnTable);
 	}
 
@@ -460,5 +459,6 @@ void InitNewAnims()
 
 	LoadCharacterAnimations_h.Hook(TObjOldPlayerLoadCharacterAnimations_r);
 	TObjTeamInitTeamMembeonmode_h.Hook(TObjTeamInitTeamMember_r, rAL, rESI);
+	ReleaseCharacterAnimations_h.Hook(TObjOldPlayerReleaseCharacterAnimations_r, noret, rEAX);
 
 }
