@@ -2,7 +2,7 @@
   "ModId": "SH.Action.Expander",
   "ModName": "SH: Action Expander",
   "ModAuthor": "Sora",
-  "ModVersion": "1.0.1",
+  "ModVersion": "1.0.2",
   "ModDescription": "Dependency mod that allows others mods to add new actions or animations to Sonic Heroes characters.",
   "ModDll": "",
   "ModIcon": "Preview.png",
